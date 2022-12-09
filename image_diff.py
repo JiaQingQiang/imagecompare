@@ -1,6 +1,6 @@
 # @Author==>QingQiangJia
 # @Time  ==>2022/3/4 14:39
-# @Email ==>719016735@foxmail.com
+# @Email ==>jiaqingqiang@foxmail.com
 # pip install structural_similarity -i https://pypi.douban.com/simple
 # pip install imutils -i https://pypi.douban.com/simple
 # pip install opencv-python -i https://pypi.douban.com/simple
