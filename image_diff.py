@@ -22,15 +22,15 @@ from osgeo import gdal
 # except:
 #     print('输入阈值不合法 程序已退出')
 #     exit()
-before = cv2.imread('E:/code/myproject/imagecompare/main/img/jpg/01.jpg')
-after = cv2.imread('E:/code/myproject/imagecompare/main/img/jpg/02.jpg')
-# dataset = gdal.Open('E:/code/myproject/imagecompare/main/img/jpg/01.jpg')
+before = cv2.imread('[the first image]')
+after = cv2.imread('[the second image]')
+dataset = gdal.Open('[the tif with coordinate system]')
 
-# def calculateXY(dataset, x, y):
-#     minx, xres, xskew, maxy, yskew, yres = dataset.GetGeoTransform()
-#     x = minx + xres * x
-#     y = maxy + yres * y
-#     return 'x:'+str(x)+',y:'+str(y)
+ def calculateXY(dataset, x, y):
+     minx, xres, xskew, maxy, yskew, yres = dataset.GetGeoTransform()
+     x = minx + xres * x
+     y = maxy + yres * y
+     return 'x:'+str(x)+',y:'+str(y)
 
 # Convert images to grayscale
 before_gray = cv2.cvtColor(before, cv2.COLOR_BGR2GRAY)
@@ -61,15 +61,15 @@ for c in contours:
     if area > 40:
         record += 1
         x, y, w, h = cv2.boundingRect(c)
-        # recordArr.append('第{}处范围为：{}  {}'.format(record, calculateXY(dataset, x, y), calculateXY(dataset, x+w, y+h)))
+        recordArr.append('第{}处范围为：{}  {}'.format(record, calculateXY(dataset, x, y), calculateXY(dataset, x+w, y+h)))
         cv2.rectangle(before, (x, y), (x + w, y + h), (36, 255, 12), 2)
         cv2.rectangle(after, (x, y), (x + w, y + h), (36, 255, 12), 2)
         cv2.drawContours(mask, [c], 0, (0, 255, 0), -1)
         cv2.drawContours(filled_after, [c], 0, (0, 255, 0), -1)
 
-# with open('report.txt', 'w') as f:
-#     for item in recordArr:
-#         f.write(item+'\n')
+ with open('report.txt', 'w') as f:
+     for item in recordArr:
+         f.write(item+'\n')
 
 print('报告已生成 程序已退出')
 cv2.imshow('before', before)
